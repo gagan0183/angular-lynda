@@ -1,7 +1,10 @@
-var app = angular.module('myApp', []);
+var app = angular.module('myApp', ['ngRoute', 'MyControllers']);
 
-app.controller('MyController', function($scope, $http) {
-    $http.get('js/data.json').then(function(response) {
-        $scope.artists = response.data;
-    });
-});
+app.config(['$routeProvider', function($routeProvider) {
+    $routeProvider
+        .when('/', {
+            templateUrl: 'js/partials/search.html',
+            controller: 'SearchController'
+        });
+}]);
+
